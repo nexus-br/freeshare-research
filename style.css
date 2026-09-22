@@ -33,7 +33,14 @@ p {
 }
 
 /* Section-specific styles used by main.html */
-#header,
+#header
+{
+	padding: 2%;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+}
+
 #intro,
 #content,
 #research,

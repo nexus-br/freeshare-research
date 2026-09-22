@@ -24,6 +24,13 @@
         new TextEncoder().encode(dados)
       );
 
+      document.addEventListener("DOMContentLoaded", () => {
+        const pergunta4 = document.getElementById("pergunta4");
+
+        pergunta4.addEventListener("input", () => {
+          localStorage.setItem("perguntaAsnwer4", pergunta4.value);
+        });
+      });
       identification = [...new Uint8Array(buffer)]
         .map(byte => byte.toString(16).padStart(2, "0"))
         .join("");
@@ -53,6 +60,7 @@
               break;
             default:
               pergunta1Asnwer = 7;
+            return pergunta1Asnwer;
           }
         });
       });
@@ -64,15 +72,16 @@
         radio.addEventListener("change", () => {
           switch (radio.value) {
             case "profissionalTIsim":
-              pergunta1Asnwer = 1;
+              pergunta2Asnwer = 1;
               break;
             case "profissionalTInão":
-              pergunta1Asnwer = 2;
+              pergunta2Asnwer = 2;
               break;
             
             default:
-              pergunta1Asnwer = 3;
+              pergunta2Asnwer = 3;
           }
+          return pergunta2Asnwer;
         });
       });
     });
@@ -90,12 +99,27 @@ document.addEventListener("DOMContentLoaded", () => {
             default:
               pergunta1Asnwer = 3;
           }
+          return pergunta3Asnwer;
         });
+      });
+    });
+    // aqui pegando o valores digitados nos textareas
+    document.addEventListener("DOMContentLoaded", () => {
+   
+      const enviar = document.getElementById("enviar");
+      const limpar = document.getElementById("limpar");
+
+      limpar.addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      enviar.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await gerarIdentification();
       });
     });
 
     
-    gerarIdentification();
   </script>
     
 </head>
@@ -143,19 +167,19 @@ document.addEventListener("DOMContentLoaded", () => {
         <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta3" value="estundanteTInão">não</label>
       </fieldset><br>
        <h2 id="conteudo-titulo">Perguntas abertas 4 a 7</h2>
-      <p>perguntas abertas numero 1</p>
+      <p>pergunta aberta numero 1</p>
       <p>4. Você considera que a tecnologia da informação, ou seja, o mundo dos computadores, ajuda ou atrapalha no desenvolvimento humano?</p>
       <textarea id="pergunta4" name="pergunta4" maxlength="160" rows="5" aria-label="Resposta da pergunta 4" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
       
-      <p>perguntas abertas numero 2</p>
+      <p>pergunta aberta numero 2</p>
       <p>5. Você considera que a tecnologia da informação, o mercado de TI esta crescendo, o que acha do novo modelo de trabalho para os proximos anos</p>
       <textarea id="pergunta5" name="pergunta5" maxlength="160" rows="5" aria-label="Resposta da pergunta 5" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
-      <p>perguntas abertas numero 3</p>
-      <p>6. Você considera que a inteligencia artificial esta roubando nossos empregos ou alavancaando o mercado?</p>
+      <p>pergunta aberta numero 3</p>
+      <p>6. Você considera que a inteligencia artificial esta roubando nossos empregos ou alavancando o mercado?</p>
       <textarea id="pergunta6" name="pergunta6" maxlength="160" rows="5" aria-label="Resposta da pergunta 6" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
-      <p>perguntas abertas numero 4</p>
+      <p>pergunta aberta numero 4</p>
       <p>7. Quais tecnologias você acredita que serão mais importantes no futuro?</p>
       <textarea id="pergunta7" name="pergunta7" maxlength="160" rows="5" aria-label="Resposta da pergunta 7" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
@@ -169,11 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
     </section>
     <br>
     <button id="enviar" type="submit" style="background-color: darkblue; color: white;">Enviar pesquisa</button>
-    <button id="limpar" type="reset" style="background-color: red; color: white;">Limpar</button>
+    <button id="limpar" type="reset" style="background-color: red; color: white;">Limpar página</button>
     <br>
     
     <section id="sobre" aria-labelledby="sobre-titulo">
       <h2 id="sobre-titulo">Sobre o projeto</h2>
+      <p><i>"projeto estundantil para analise de sistemas, projeto interdisciplinar acadêmcio numero 1"</i></p>
       <p>Agradeço por ter despendido um pouco do seu precioso tempo para responder esse questionario. Quando tiver concluido a analise do mesmo lançarei publicamente a estatistica com uma analise geral da pequna amostra da enquete, sempre respeitando as lesgilaçoes e a lei de proteção de dados LGPD, mantendo o anonimato de sua participação. muito grato</p>
     </section>
   </main>
@@ -183,8 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
   <footer id="contato">
     <section id="contato" aria-labelledby="sobre-titulo"></section>
     <p>&copy; 2026 Projeto de Pesquisa</p>
-    <p><a href="mailto:rogerioprosouza@gmail.com">Contato</a></p>
-    <p><a href="github.com/nexus-br/freesare">Link para os resultados</a></p>
+    <p><a href="mailto:rogerio.prosouza@gmail.com">Contato</a></p>
+    <p><a href="https://github.com/nexus-br/freesare/research">Link para os resultados</a></p>
     </section>
   </footer>
 </body>
