@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Projeto de pesquisa uninter 2026 by rogerio">
   <title>Projeto de Pesquisa 1.0</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    
 </head>
 <body>
   <!-- Cabeçalho e navegação -->
   <header>
     <nav aria-label="Navegação principal">
       <a href="#inicio">Início</a>
+      <a href="#conteudo">Conteúdo</a>
       <a href="#sobre">Sobre</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -19,10 +22,52 @@
   <!-- Conteúdo principal -->
   <main id="inicio">
     <section aria-labelledby="titulo">
-      <h1 id="titulo">Projeto de Pesquisa</h1>
-      <p>Pesquisa local sobre estudos e aplicabilidade de tecnologias emergentes em diferentes no mercado de trabalho local</p>
+      <h1 id="titulo">Projeto de Pesquisa - rogério</h1>
+      <p>Pesquisa acadêmica voluntaria e local sobre estudos e aplicabilidade de tecnologias emergentes da informação em diferentes meios no mercado de trabalho local (textoem português)</p>
+      
     </section>
+    <section id="conteudo" aria-labelledby="conteudo">
+      <h3> Objetivo do projeto e fazer um levantamento local sobre as tecnologias da informação, usando de um questionario anônimo, voluntario e de livre opnião para profissionais ti, estudantes e publico em geral</h3>
+      <h2 id="conteudo-titulo">Perguntas objetivas</h2>
+      <p>perguntas basicas objetivas 1 a 3</p><br>
+    <!-- inserir  aqui os radiobox para as perguntas -->
+      <fieldset id="pergunta1">
+        <legend>1. Qual sua faixa etária?</legend>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="menor-de-18"> Menor de 18</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="18-25"> 18 - 25</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="26-35"> 26 - 35</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="36-46"> 36 - 46</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="57-65"> De 57 a 65</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="maior-de-66"> Maior de 66 anos</label>
+      </fieldset><br>
+      <fieldset id="pergunta2">
+        <legend>2. Você é profissional da área de tecnologia da informação?</legend>
+        <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta2" value="profissionalTIsim">sim</label>
+        <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta2" value="profissionalTInão">não</label>
+      </fieldset><br>
+      <fieldset id="pergunta3"><br>
+        <legend>3. Você é estudante da área de tecnologia da informação?</legend>
+        <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta3" value="estudanteTIsim">sim</label>
+        <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta3" value="estundanteTInão">não</label>
+      </fieldset><br>
+       <h2 id="conteudo-titulo">Perguntas abertas</h2>
+      <p>perguntas basicas abertas numero 1</p>
+      <p>4. Você considera que a tecnologia da informação, ou seja, o mundo dos computadores, ajuda ou atrapalha no desenvolvimento humano?</p>
+      <textarea id="pergunta4" name="pergunta4" maxlength="160" rows="5" aria-label="Resposta da pergunta 4" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
+      
+      <p>perguntas basicas abertas numero 2</p>
+      <p>5. Você considera que a tecnologia da informação, o mercado de TI esta crescendo, o que acha do novo modelo de trabalho para os proximos anos</p>
+      <textarea id="pergunta5" name="pergunta5" maxlength="160" rows="5" aria-label="Resposta da pergunta 5" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
+      <p>perguntas basicas abertas numero 3</p>
+      <p>6. Você considera que a inteligencia artificial esta roubando nossos empregos ou alavancaando o mercado?</p>
+      <textarea id="pergunta6" name="pergunta6" maxlength="160" rows="5" aria-label="Resposta da pergunta 6" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
+
+      <p>perguntas basicas abertas numero 4</p>
+      <p>7. Quais tecnologias você acredita que serão mais importantes no futuro?</p>
+      <textarea id="pergunta7" name="pergunta7" maxlength="160" rows="5" aria-label="Resposta da pergunta 7" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
+    <!-- inserir  aqui os textbox para as perguntas -->
+    </section>
     <section id="sobre" aria-labelledby="sobre-titulo">
       <h2 id="sobre-titulo">Sobre o projeto</h2>
       <p>Uma pesquisa basica e voluntaria para conhecer o mercado local de t.i e suas formações impactando a vida das pessoas em meados de 2026</p>
@@ -30,6 +75,7 @@
   </main>
 
   <!-- Rodapé -->
+   <!-- inserir aqui contato-->
   <footer id="contato">
     <p>&copy; 2026 Projeto de Pesquisa</p>
   </footer>
