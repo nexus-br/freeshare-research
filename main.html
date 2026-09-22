@@ -6,6 +6,97 @@
   <meta name="description" content="Projeto de pesquisa uninter 2026 by rogerio">
   <title>Projeto de Pesquisa 1.0</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script>
+    
+    let identification = "";
+    let pergunta1Asnwer = 0;
+    let pergunta2Asnwer = 0; 
+    let pergunta3Asnwer = 0;
+
+    async function gerarIdentification() {
+      const sequencia = Number(localStorage.getItem("identification-sequencia") || 0) + 1;
+      localStorage.setItem("identification-sequencia", sequencia);
+
+      const dados = `${new Date().toISOString()}-${sequencia}`;
+      const buffer = await crypto.subtle.digest(
+        "SHA-256",
+        new TextEncoder().encode(dados)
+      );
+
+      identification = [...new Uint8Array(buffer)]
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('input[name="pergunta1"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          switch (radio.value) {
+            case "0-18":
+              pergunta1Asnwer = 1;
+              break;
+            case "18-25":
+              pergunta1Asnwer = 2;
+              break;
+            case "26-35":
+              pergunta1Asnwer = 3;
+              break;
+            case "36-46":
+              pergunta1Asnwer = 4;
+              break;
+            case "57-65":
+              pergunta1Asnwer = 5;
+              break;
+            case "maior-de-66":
+              pergunta1Asnwer = 6;
+              break;
+            default:
+              pergunta1Asnwer = 7;
+          }
+        });
+      });
+    });
+//pergunta dois bloco do listener radio choose
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('input[name="pergunta2"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          switch (radio.value) {
+            case "profissionalTIsim":
+              pergunta1Asnwer = 1;
+              break;
+            case "profissionalTInão":
+              pergunta1Asnwer = 2;
+              break;
+            
+            default:
+              pergunta1Asnwer = 3;
+          }
+        });
+      });
+    });
+document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('input[name="pergunta3"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          switch (radio.value) {
+            case "estudanteTIsim":
+              pergunta1Asnwer = 1;
+              break;
+            case "estudanteTInão":
+              pergunta1Asnwer = 2;
+              break;
+            
+            default:
+              pergunta1Asnwer = 3;
+          }
+        });
+      });
+    });
+
+    
+    gerarIdentification();
+  </script>
     
 </head>
 <body>
@@ -22,8 +113,9 @@
   <!-- Conteúdo principal -->
   <main id="inicio">
     <section aria-labelledby="titulo">
-      <h1 id="titulo">Projeto de Pesquisa - rogério</h1>
-      <p>Pesquisa acadêmica voluntaria e local sobre estudos e aplicabilidade de tecnologias emergentes da informação em diferentes meios no mercado de trabalho local (textoem português)</p>
+      <h1 id="titulo">Projeto acadêmico de Pesquisa - rogério</h1>
+      <p>Pesquisa acadêmica voluntaria e local sobre estudos e aplicabilidade de tecnologias emergentes da informação em diferentes meios no mercado de trabalho local (texto em português)</p>
+      <h5>obs: é um questionario aberto a todos os publicos sinta a vontade para participar!</h5>
       
     </section>
     <section id="conteudo" aria-labelledby="conteudo">
@@ -33,7 +125,7 @@
     <!-- inserir  aqui os radiobox para as perguntas -->
       <fieldset id="pergunta1">
         <legend>1. Qual sua faixa etária?</legend>
-        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="menor-de-18"> Menor de 18</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="0-18"> Menor de 18</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="18-25"> 18 - 25</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="26-35"> 26 - 35</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="36-46"> 36 - 46</label>
@@ -51,19 +143,19 @@
         <label style="display: inline-block; margin-right: 15px;"><input type="radio" name="pergunta3" value="estundanteTInão">não</label>
       </fieldset><br>
        <h2 id="conteudo-titulo">Perguntas abertas 4 a 7</h2>
-      <p>perguntas basicas abertas numero 1</p>
+      <p>perguntas abertas numero 1</p>
       <p>4. Você considera que a tecnologia da informação, ou seja, o mundo dos computadores, ajuda ou atrapalha no desenvolvimento humano?</p>
       <textarea id="pergunta4" name="pergunta4" maxlength="160" rows="5" aria-label="Resposta da pergunta 4" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
       
-      <p>perguntas basicas abertas numero 2</p>
+      <p>perguntas abertas numero 2</p>
       <p>5. Você considera que a tecnologia da informação, o mercado de TI esta crescendo, o que acha do novo modelo de trabalho para os proximos anos</p>
       <textarea id="pergunta5" name="pergunta5" maxlength="160" rows="5" aria-label="Resposta da pergunta 5" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
-      <p>perguntas basicas abertas numero 3</p>
+      <p>perguntas abertas numero 3</p>
       <p>6. Você considera que a inteligencia artificial esta roubando nossos empregos ou alavancaando o mercado?</p>
       <textarea id="pergunta6" name="pergunta6" maxlength="160" rows="5" aria-label="Resposta da pergunta 6" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
-      <p>perguntas basicas abertas numero 4</p>
+      <p>perguntas abertas numero 4</p>
       <p>7. Quais tecnologias você acredita que serão mais importantes no futuro?</p>
       <textarea id="pergunta7" name="pergunta7" maxlength="160" rows="5" aria-label="Resposta da pergunta 7" style="display: block; width: 100%; max-width: 460px; box-sizing: border-box;" placeholder="Digite sua resposta (máximo de 160 caracteres)"></textarea>
 
