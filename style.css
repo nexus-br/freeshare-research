@@ -1,0 +1,59 @@
+/* CSS3 page framework */
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: #808080;
+	color: #003b5c;
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+}
+
+main {
+	width: min(92%, 1200px);
+	margin: 0 auto;
+}
+
+section {
+	padding: 2%;
+	margin: 2% 0;
+	background-color: rgba(255, 255, 255, 0.85);
+	border: 1px solid #003b5c;
+	border-radius: 6px;
+}
+
+p {
+	padding: 2%;
+	margin: 0 0 1rem;
+	color: #003b5c;
+	font-family: "Courier New", Courier, monospace;
+	font-style: italic;
+}
+
+/* Section-specific styles used by main.html */
+#header,
+#intro,
+#content,
+#research,
+#conclusion,
+#footer {
+	padding: 2%;
+}
+
+#header,
+#footer {
+	background-color: #003b5c;
+	color: #ffffff;
+}
+
+@media (max-width: 768px) {
+	main {
+		width: 96%;
+	}
+
+	section {
+		margin: 3% 0;
+	}
+}
