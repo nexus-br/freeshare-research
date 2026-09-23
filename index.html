@@ -34,6 +34,8 @@
         .join("");
     }
     // pergunta 1 radio box listener
+    //função ao clicar em salvar
+    
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('input[name="pergunta1"]').forEach((radio) => {
         radio.addEventListener("change", () => {
@@ -107,6 +109,7 @@
       const pergunta4 = document.getElementById("pergunta4");
       const pergunta5 = document.getElementById("pergunta5");
       const pergunta6 = document.getElementById("pergunta6");
+      const pergunta7 = document.getElementById("pergunta7");
    
       const enviar = document.getElementById("enviar");
       const limpar = document.getElementById("limpar");
@@ -133,10 +136,43 @@
       enviar.addEventListener("click", async (event) => {
         event.preventDefault();
         await gerarIdentification();
+        salvar();
       });
     });
-
-    
+    function atualizarHora(){
+      const agora = new Date();
+      const horas = agora.getHours().toString().padStart(2, '0');
+      const minutos = agora.getMinutes().toString().padStart(2, '0');
+      const segundos = agora.getSeconds().toString().padStart(2, '0');
+      return document.getElementById('hora').textContent = `${horas}:${minutos}:${segundos}`;
+      };
+        // Atualiza a hora a cada segundo
+      setInterval(atualizarHora, 1000);
+      atualizarHora(); // Chama uma vez para mostrar imediatamente
+        //funcao salvar com download
+        //salva o resultado num arquivo txt
+       function salvar(){
+        const respostas = [
+          identification,
+          pergunta1Asnwer,
+          pergunta2Asnwer,
+          pergunta3Asnwer,
+          pergunta4Asnwer,
+          pergunta5Asnwer,
+          pergunta6Asnwer,
+          pergunta7Asnwer
+            ].join(";");
+            localStorage.setItem("respostas-pesquisa", respostas);
+            const texto = `Data/Hora: ${new Date().toISOString()}; Dados: ${respostas}`;
+            const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            const date = new Date();
+            let diamesano = `${date.getFullYear()}_${date.getMonth()}_${date.getDay()}- `;
+            link.download = `${diamesano}-dados_da_tabela_IMC.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+       }
   </script>
     
 </head>
@@ -209,8 +245,9 @@
     <!-- inserir  aqui os textbox para as perguntas -->
     </section>
     <br>
-    <button id="enviar" type="submit" style="background-color: darkblue; color: white;">Enviar pesquisa</button>
+    <button id="enviar" type="submit" style="background-color: darkblue; color: white;">agregar</button>
     <button id="limpar" type="reset" style="background-color: red; color: white;">Limpar página</button>
+    <button id="salvar" type="button" style="background-color: green; color: white;" onclick="salvar()">Salvar resultados</button>
     <br>
     
     <section id="sobre" aria-labelledby="sobre-titulo">
@@ -226,7 +263,7 @@
     <section id="contato" aria-labelledby="sobre-titulo"></section>
     <p>&copy; 2026 Projeto de Pesquisa</p>
     <p><a href="mailto:rogerio.prosouza@gmail.com">Contato</a></p>
-    <p><a href="https://github.com/nexus-br/freesare/research">Link para os resultados</a></p>
+    <p><i>"em breve": </i><a href="https://github.com/nexus-br/freesare/research">Link para os resultados</a></p>
     </section>
   </footer>
 </body>
