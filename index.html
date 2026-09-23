@@ -52,7 +52,7 @@
             case "36-46":
               pergunta1Asnwer = 4;
               break;
-            case "57-65":
+            case "47-65":
               pergunta1Asnwer = 5;
               break;
             case "maior-de-66":
@@ -129,6 +129,26 @@
         pergunta7Asnwer = pergunta7.value;
       });
 
+
+      // mensagem e resolvendo o captcha
+      const captchaMensagem = document.createElement("p");
+      captchaMensagem.id = "captcha-mensagem";
+      captchaMensagem.setAttribute("role", "alert");
+      captchaMensagem.style.fontWeight = "bold";
+      document.getElementById("text3").parentElement.parentElement.after(captchaMensagem);
+
+      document.querySelectorAll('input[name="captcha"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.value === "17" || radio.value === "37") {
+            captchaMensagem.textContent = "não é esta a reposta";
+            captchaMensagem.style.color = "red";
+          } else if (radio.value === "45") {
+            captchaMensagem.textContent = "Resposta correta. Clique no botão salvar.";
+            captchaMensagem.style.color = "green";
+          }
+        });
+      });
+
       limpar.addEventListener("click", () => {
         window.location.reload();
       });
@@ -169,7 +189,7 @@
             link.href = URL.createObjectURL(blob);
             const date = new Date();
             let diamesano = `${date.getFullYear()}_${date.getMonth()}_${date.getDay()}- `;
-            link.download = `${diamesano}-dados_da_tabela_IMC.txt`;
+            link.download = `${diamesano}-respostas-da-pesquisa-interativa-Uninter-by-rogerio.txt`;
             link.click();
             URL.revokeObjectURL(link.href);
        }
@@ -206,7 +226,7 @@
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="18-25"> 18 - 25</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="26-35"> 26 - 35</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="36-46"> 36 - 46</label>
-        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="57-65"> De 57 a 65</label>
+        <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="47-65"> De 47 a 65</label>
         <label style="display: inline-block; margin-right: 10px;"><input type="radio" name="pergunta1" value="maior-de-66"> Maior de 66 anos</label>
       </fieldset><br>
       <fieldset id="pergunta2">
