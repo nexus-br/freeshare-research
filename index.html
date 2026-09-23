@@ -8,14 +8,19 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <script>
-    
+    // inicializando variaveis globais para armazenar as respostas do questionario
     let identification = "";
     let pergunta1Asnwer = 0;
     let pergunta2Asnwer = 0; 
     let pergunta3Asnwer = 0;
+    let pergunta4Asnwer = "";
+    let pergunta5Asnwer = "";
+    let pergunta6Asnwer = "";
+    let pergunta7Asnwer = "";
 
+    // gerando identificador unico e gravando o arquivo com as respostas do questionario no localStorage
     async function gerarIdentification() {
-      const sequencia = Number(localStorage.getItem("identification-sequencia") || 0) + 1;
+      const sequencia = Number(localStorage.getItem("identification-sequencia") || 0) + 1 + "r1: " + pergunta1Asnwer + "r2: " + pergunta2Asnwer + "r3: " + pergunta3Asnwer + "r4: " + pergunta4Asnwer + "r5: " + pergunta5Asnwer + "r6: " + pergunta6Asnwer + "r7: " + pergunta7Asnwer;
       localStorage.setItem("identification-sequencia", sequencia);
 
       const dados = `${new Date().toISOString()}-${sequencia}`;
@@ -24,18 +29,11 @@
         new TextEncoder().encode(dados)
       );
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const pergunta4 = document.getElementById("pergunta4");
-
-        pergunta4.addEventListener("input", () => {
-          localStorage.setItem("perguntaAsnwer4", pergunta4.value);
-        });
-      });
       identification = [...new Uint8Array(buffer)]
         .map(byte => byte.toString(16).padStart(2, "0"))
         .join("");
     }
-    
+    // pergunta 1 radio box listener
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('input[name="pergunta1"]').forEach((radio) => {
         radio.addEventListener("change", () => {
@@ -85,7 +83,8 @@
         });
       });
     });
-document.addEventListener("DOMContentLoaded", () => {
+    // pergunta 3 radio box listener
+    document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll('input[name="pergunta3"]').forEach((radio) => {
         radio.addEventListener("change", () => {
           switch (radio.value) {
@@ -103,16 +102,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     });
-    // aqui pegando o valores digitados nos textareas
+    // aqui pegando o valores digitados nos textareas "perguntas abertas" e armazenando nas variaveis globais
     document.addEventListener("DOMContentLoaded", () => {
+      const pergunta4 = document.getElementById("pergunta4");
+      const pergunta5 = document.getElementById("pergunta5");
+      const pergunta6 = document.getElementById("pergunta6");
    
       const enviar = document.getElementById("enviar");
       const limpar = document.getElementById("limpar");
 
+      pergunta4.addEventListener("input", () => {
+        pergunta4Asnwer = pergunta4.value;
+      });
+      pergunta5.addEventListener("input", () => {
+        pergunta5Asnwer = pergunta5.value;
+      });
+    
+      // pegando texto do txtbox2
+      pergunta6.addEventListener("input", () => {
+        pergunta6Asnwer = pergunta6.value;
+      });
+      pergunta7.addEventListener("input", () => {
+        pergunta7Asnwer = pergunta7.value;
+      });
+
       limpar.addEventListener("click", () => {
         window.location.reload();
       });
-
+      // pegando texto txtbox 3
       enviar.addEventListener("click", async (event) => {
         event.preventDefault();
         await gerarIdentification();
@@ -198,8 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     <section id="sobre" aria-labelledby="sobre-titulo">
       <h2 id="sobre-titulo">Sobre o projeto</h2>
-      <p><i>"projeto estundantil para analise de sistemas, projeto interdisciplinar acadêmcio numero 1"</i></p>
-      <p>Agradeço por ter despendido um pouco do seu precioso tempo para responder esse questionario. Quando tiver concluido a analise do mesmo lançarei publicamente a estatistica com uma analise geral da pequna amostra da enquete, sempre respeitando as lesgilaçoes e a lei de proteção de dados LGPD, mantendo o anonimato de sua participação. muito grato</p>
+      <p><i>"projeto estudantil para analise de sistemas, projeto interdisciplinar acadêmcio numero 1"</i></p>
+      <p>Agradeço por ter despendido um pouco do seu precioso tempo para responder esse questionario. Quando tiver concluido a analise do mesmo lançarei publicamente a estatistica com uma analise geral da pequna amostra da enquete, sempre respeitando as lesgilações e a lei de proteção de dados LGPD, mantendo o anonimato de sua participação. estou muito agradecido</p>
     </section>
   </main>
 
